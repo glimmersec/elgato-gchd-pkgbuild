@@ -1,7 +1,7 @@
 # Maintainer: glimmersec (glimmersec@gmail.com)
 
 pkgname=elgato-gchd
-pkgver=r126.c6e2a85
+pkgver=r148.5c8b23a
 pkgrel=1
 pkgdesc="Elgato Game Capture HD Driver"
 arch=('i686' 'x86_64')
@@ -12,7 +12,7 @@ makedepends=('git' 'cmake' 'p7zip')
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
 source=(
-    "git+${url}.git#tag=0.2.0" 
+    "git+${url}.git" 
     "README.md"
     "https://edge.elgato.com/egc/windows/egcw/3.70/final/GameCaptureSetup_3.70.43.3043_x64.msi"
     "LICENSE"
@@ -51,5 +51,8 @@ package() {
     DESTDIR="${pkgdir}" cmake --install "${srcdir}/build"
     for f in ${srcdir}/firmware/*; do
         install -D -m644 -t "${pkgdir}/usr/lib/firmware/gchd/" "$f"
+    done
+    for f in ${srcdir}/${pkgname%-git}/udev-rules/*; do
+        install -D -m644 -t "${pkgdir}/etc/udev/rules.d/" "$f"
     done
 }
