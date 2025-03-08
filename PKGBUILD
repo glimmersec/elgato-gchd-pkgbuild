@@ -13,11 +13,15 @@ provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
 source=(
     "git+${url}.git#tag=0.2.0" 
+    "README.md"
     "https://edge.elgato.com/egc/windows/egcw/3.70/final/GameCaptureSetup_3.70.43.3043_x64.msi"
+    "LICENSE"
 )
 sha256sums=(
     'SKIP'
+    'SKIP'
     '8f4a81e0e4cc794eaf1c9e33c2c8ade8b345de1e524369fc7e31d8dff3f83d5e'
+    'SKIP'
 )
 
 pkgver() {
